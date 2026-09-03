@@ -1,0 +1,1 @@
+export const MAX_WFH_DAYS_PER_MONTH = 6;
