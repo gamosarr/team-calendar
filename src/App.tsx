@@ -10,7 +10,8 @@ import { useCalendarEvents } from './hook/useCalendarEvents';
 function App() {
   const [remainingWfhDays, setWfhDays] = useState(MAX_WFH_DAYS_PER_MONTH);
   const { events, loading, refreshEvents } = useCalendarEvents();
-
+  console.log('events: ', events,loading, refreshEvents);
+  
   return (
     <div className="min-h-screen bg-slate-100 ">
         <div className="flex w-full">
