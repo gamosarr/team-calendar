@@ -5,10 +5,13 @@ import type { Dispatch, SetStateAction } from "react";
 
 type CalendarProps = {
   setWfhDays: Dispatch<SetStateAction<number>>;
+  events: any[];
 }
 export default function Calendar({
-  setWfhDays
+  setWfhDays,
+  events
 }: CalendarProps) {
+
   return (
     <FullCalendar
       plugins={[dayGridPlugin, interactionPlugin]}
@@ -24,6 +27,7 @@ export default function Calendar({
           setWfhDays((prev) => prev - 1);
         }
       }
+      events={events}
     />
   );
 }

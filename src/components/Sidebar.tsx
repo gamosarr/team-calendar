@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState, } from "react";
+import { useEffect, useRef, } from "react";
 import { Draggable } from "@fullcalendar/interaction";
-// import { MAX_WFH_DAYS_PER_MONTH } from "../WFH_RULES/wfh_rules";
+import SelectUser from "./SelectUser";
 
 type SideBarProps = {
     remainingWfhDays: number;
@@ -11,7 +11,6 @@ export default function Sidebar({
     remainingWfhDays: remainingWfhDays
 }: SideBarProps){
     const containerRef = useRef<HTMLDivElement>(null);
-    // const [wfhDays, setWfhDays] = useState(MAX_WFH_DAYS_PER_MONTH);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -31,6 +30,7 @@ export default function Sidebar({
 
     return (
         <div className="w-1/5 p-6">
+            <SelectUser/>
             <div ref={containerRef}>
                 {Array.from({length: remainingWfhDays}, (_, index) => (
                     <div key={index} className="fc-event bg-blue-500 text-white p-2 rounded mb-2">
