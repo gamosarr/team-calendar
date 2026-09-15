@@ -1,17 +1,20 @@
-import { useEffect, useRef, } from "react";
+import { useEffect, useRef} from "react";
 import { Draggable } from "@fullcalendar/interaction";
 import SelectUser from "./SelectUser";
 
 type SideBarProps = {
-    remainingWfhDays: number;
+    remainingWfhDays: number | undefined;
+    selectedUser: string;
+    setSelectedUser: (user: string) => void;
 }
 
 
 export default function Sidebar({
-    remainingWfhDays: remainingWfhDays
+    remainingWfhDays: remainingWfhDays,
+    selectedUser: selectedUser,
+    setSelectedUser: setSelectedUser,
 }: SideBarProps){
     const containerRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if (!containerRef.current) return;
 
@@ -30,13 +33,33 @@ export default function Sidebar({
 
     return (
         <div className="w-1/5 p-6">
-            <SelectUser/>
+            <SelectUser selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
             <div ref={containerRef}>
-                {Array.from({length: remainingWfhDays}, (_, index) => (
-                    <div key={index} className="fc-event bg-blue-500 text-white p-2 rounded mb-2">
-                        WFH
-                    </div>    
-                ))}
+                {
+                    remainingWfhDays !== undefined ? (
+                        Array.from({length: remainingWfhDays}, (_, index) => (
+                            <div key={index} className="fc-event bg-blue-500 text-white p-2 rounded mb-2">
+                                WFH - {selectedUser}
+                            </div>    
+                        ))
+                        // <div>Select a user to see remaining WFH days</div>
+
+                    ) : (
+                        <div>selected</div>
+                    )
+                }
+                {/* {
+                    remainingWfhDays === 0 ? (
+                        Array.from({length: remainingWfhDays}, (_, index) => (
+                            <div key={index} className="fc-event bg-blue-500 text-white p-2 rounded mb-2">
+                                WFH
+                            </div>    
+                        ))
+                    ) : (
+                        <div>Select a user to see remaining WFH days</div>
+                    )
+                } */}
+                
             </div>
         </div>
     )

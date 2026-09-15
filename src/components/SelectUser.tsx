@@ -1,9 +1,15 @@
-import { useState } from "react";
 import { SD54_MEMBERS } from "../WFH_RULES/wfh_rules";
 
+type SelectUserProps = {
+    selectedUser: string;
+    setSelectedUser: (user: string) => void;
+}
 
-export default function SelectUser() {
-  const [selectedUser, setSelectedUser] = useState("");
+export default function SelectUser({
+    selectedUser: selectedUser,
+    setSelectedUser: setSelectedUser,
+}: SelectUserProps) {
+  // const [selectedUser, setSelectedUser] = useState("");
 
   return (
     <div className="mb-4">

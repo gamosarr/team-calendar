@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getIssues } from "../services/githubApi";
 import { issueToCalendarEvent } from "../utils/eventMapper";
+import type { CalendarEvent } from "../types/calendar";
 
 export function useCalendarEvents() {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   async function refreshEvents() {
